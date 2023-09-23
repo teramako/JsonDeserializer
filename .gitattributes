@@ -1,0 +1,6 @@
+[attr]powershell text eol=crlf encoding=utf-8-bom
+
+* text eol=lf encoding=utf-8
+*.psd1 powershell
+*.psm1 powershell
+*.ps1 powershell
