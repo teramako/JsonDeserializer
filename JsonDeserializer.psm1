@@ -7,7 +7,7 @@ if ($PSEdition -eq "Desktop") {
         $resultHash = [ordered]@{}
         foreach ($entry in $dict.GetEnumerator()) {
             if ($entry.Value -is [array]) {
-                $resultHash.Add($entry.Key, (ConvertFrom-Array $entry.Value))
+                $resultHash.Add($entry.Key, [array](ConvertFrom-Array $entry.Value))
             } elseif ($entry.Value -is [IDictionary]) {
                 $resultHash.Add($entry.Key, (ConvertFrom-Dictionary $entry.Value))
             } else {
@@ -22,7 +22,7 @@ if ($PSEdition -eq "Desktop") {
         for ($index = 0; $index -lt $length; $index++) {
             $item = $array[$index]
             if ($item -is [array]) {
-                $resultArray[$index] = ConvertFrom-Array $item
+                $resultArray[$index] = [array](ConvertFrom-Array $item)
             } elseif ($item -is [IDictionary]) {
                 $resultArray[$index] = ConvertFrom-Dictionary $item
             } else {
@@ -56,7 +56,7 @@ function ConvertFrom-JsonAsHashTable {
         if ($PSEdition -eq "Desktop") {
             $obj = $JsonSerializer.DeserializeObject($str.ToString())
             if ($obj -is [array]) {
-                return ConvertFrom-Array $obj
+                return [array](ConvertFrom-Array $obj)
             } elseif ($obj -is [IDictionary]) {
                 return ConvertFrom-Dictionary $obj
             }
